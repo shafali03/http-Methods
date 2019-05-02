@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Project Name</title>
+
+
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|PT+Sans" rel="stylesheet">
+    <!-- main css -->
+    <link rel="stylesheet" href="css/main.css">
+
+</head>
+
+<body>
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col col-md-8 mx-auto">
+                <h3 class="text-capitalize text-center mt-3">item form</h3>
+                <div class="feedback alert alert-danger text-capitalize text-center">
+                    alert
+                </div>
+                <!-- form -->
+                <form id='httpForm' class="mb-5 mt-3">
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fab fa-amazon"></i></span>
+                        </div>
+                        <input type="text" id='itemInput' class="form-control text-capitalize" placeholder="enter name">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-image"></i></span>
+                        </div>
+                        <input type="text" id='imageInput' class="form-control text-capitalize" placeholder="Image">
+                    </div>
+                    <button type="submit" id='submitBtn' class="btn submitBtn btn-block text-capitalize">add item</button>
+
+                </form>
+                <!-- end of form -->
+                <!-- list  -->
+                <div class="mt-5">
+                    <h3 class="text-capitalize text-center">items</h3>
+                    <ul class="list-group items">
+                        <!-- single item -->
+                        <li class="list-group-item d-flex align-items-center justify-content-between flex-wrap item my-2">
+                            <img src="img/default.jpg" id='itemImage' class='itemImage img-thumbnail' alt="">
+                            <h6 id="itemName" class="text-capitalize itemName">item name</h6>
+                            <div class="icons">
+
+                                <a href='#' class="itemIcon mx-2 edit-icon" data-id=''>
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a href='#' class="itemIcon mx-2 delete-icon" data-id=''>
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </div>
+                        </li>
+                        <!-- end of single item -->
+                    </ul>
+                </div>
+                <!-- end of list -->
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <!-- bootstrap js -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- bootstrap ajax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <!-- main js -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>
