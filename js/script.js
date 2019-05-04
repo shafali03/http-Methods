@@ -109,9 +109,6 @@ function postItemAPI(img, itemName) {
     const name = itemName;
 
     const url = 'https://5ccaf9ad54c8540014835196.mockapi.io/foodItems';
-
-    // function getItemsAPI(cb) {
-    //     const url = 'https://5ccaf9ad54c8540014835196.mockapi.io/foodItems';
     const ajax = new XMLHttpRequest();
     ajax.open("POST", url, true);
 
@@ -150,19 +147,17 @@ function getIcons() {
 
     editIcon.forEach(icon => {
         const itemID = icon.dataset.id;
-        icon.addEventListener('click', function (event) {
+        icon.addEventListener("click", function (event) {
             event.preventDefault();
-            //target parent element 
             const parent = event.target.parentElement.parentElement.parentElement;
-            const img = parent.querySelector('.itemImage').src;
-            const name = parent.querySelector('.itemName').textContent;
+            const img = parent.querySelector(".itemImage").src;
+            const name = parent.querySelector(".itemName").textContent;
+
             // console.log(parent, img, name, itemID);
             editItemUI(parent, img, name, itemID);
-
-        })
-    })
+        });
+    });
 }
-
 
 
 
@@ -182,20 +177,76 @@ function deleteItemAPI(id) {
             console.log('something went wrong')
         }
     };
-
     ajax.onerror = function () {
         console.log('there was an error');
     };
-
     ajax.send();
 }
 // edit user
 function editItemUI(parent, itemImg, name, itemID) {
     event.preventDefault();
 
-    itemList.removeChild(parent);
+    items.removeChild(parent);
 
 
+    // console.log(itemImg)
+    const imgIndex = itemImg.indexOf('img/');
+    const jpgIndex = itemImg.indexOf('.jpg');
+    console.log(imgIndex, jpgIndex);
 
 
+    const img = itemImg.slice(imgIndex + 4, jpgIndex);
+    // console.log(img);
+    itemInput.value = name.trim();
+    imageInput.value = img;
+    editedItemID = itemID;
+    submitBtn.innerHTML = "Edit Item";
+    httpForm.removeEventListener('submit', submitItem);
+    httpForm.addEventListener('submit', editItemAPI);
+
+}
+
+//function editItemAPI
+
+function editItemAPI() {
+    event.preventDefault();
+    const id = editItemID;
+
+
+    const itemValue = itemInput.value;
+    const imageValue = imageInput.value;
+
+    if (itemValue.length === 0 || imageValue.length === 0) {
+        showFeedback('please enter correct values')
+
+    } else {
+        const img = `img/${imageValue}.jpg`;
+        const name = itemValue;
+        const url = `https://5ccaf9ad54c8540014835196.mockapi.io/foodItems/${id}`;
+        const ajax = new XMLHttpRequest();
+        ajax.open("PUT", url, true);
+
+        ajax.setRequestHeader('Content-Type',
+            'application/x-www-form-urlencoded');
+
+        ajax.onload = function () {
+            console.log(this.responseText);
+
+        };
+
+        ajax.onerror = function () {
+            console.log('there was an error');
+        };
+
+        ajax.send(`image=${img}&name=${name}`);
+    }
+}
+
+function reverseForm() {
+    itemInput.value = '';
+    imageInput.value = '';
+    submitBtn.innerHTML = 'Add Item';
+    httpForm.removeEventListener('submit', editItemAPI);
+    httpForm.addEventListener('submit', submitItem);
+    getItemsAPI(showItems);
 }
