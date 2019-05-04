@@ -4,7 +4,7 @@ const httpForm = document.getElementById('httpForm');
 const itemInput = document.getElementById('itemInput');
 const imageInput = document.getElementById('imageInput');
 const feedback = document.querySelector('.feedback');
-const items = document.querySelector('.items');
+// const items = document.querySelector('.items');
 const submitBtn = document.getElementById('submitBtn');
 let editedItemID = 0;
 
@@ -105,7 +105,7 @@ function showItems(data) {
 
 //post items =======================================================
 function postItemAPI(img, itemName) {
-    const image = `img/${img}.jpg`;
+    const image = `${img}.jpg`;
     const name = itemName;
 
     const url = 'https://5ccaf9ad54c8540014835196.mockapi.io/foodItems';
@@ -143,10 +143,24 @@ function getIcons() {
         const itemID = icon.dataset.id;
         icon.addEventListener('click', function (event) {
             event.preventDefault();
-            console.log(itemID);
+            // console.log(itemID);
             deleteItemAPI(itemID)
         });
     });
+
+    editIcon.forEach(icon => {
+        const itemID = icon.dataset.id;
+        icon.addEventListener('click', function (event) {
+            event.preventDefault();
+            //target parent element 
+            const parent = event.target.parentElement.parentElement.parentElement;
+            const img = parent.querySelector('.itemImage').src;
+            const name = parent.querySelector('.itemName').textContent;
+            // console.log(parent, img, name, itemID);
+            editItemUI(parent, img, name, itemID);
+
+        })
+    })
 }
 
 
@@ -154,15 +168,15 @@ function getIcons() {
 
 //delete user =====================================================
 function deleteItemAPI(id) {
-
-
     const url = `https://5ccaf9ad54c8540014835196.mockapi.io/foodItems/${id}`;
+
     const ajax = new XMLHttpRequest();
 
     ajax.open("DELETE", url, true);
 
     ajax.onload = function () {
         if (this.status === 200) {
+            // console.log(this.responseText);
             getItemsAPI(showItems);
         } else {
             console.log('something went wrong')
@@ -175,4 +189,13 @@ function deleteItemAPI(id) {
 
     ajax.send();
 }
+// edit user
+function editItemUI(parent, itemImg, name, itemID) {
+    event.preventDefault();
 
+    itemList.removeChild(parent);
+
+
+
+
+}
